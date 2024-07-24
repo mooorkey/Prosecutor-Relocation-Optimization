@@ -1,5 +1,5 @@
 '''
-This file demonstrate how to solve a common job assignment problem
+This file demonstrates how to solve a common job assignment problem
 Example: A given matrix represents the cost of assigning jobs to workers. 
 Each row represents a worker, and each column represents the cost of assigning a job to that worker.
 cost_matrix = [
@@ -14,6 +14,8 @@ A deepcopy is being used to prevent changes made to mutable object
 Selection Method: Roulette Wheel Selection with Elitsm
 Crossover Method: Partially Mapped Crossover
 Mutation Method: Swap Mutation
+
+Also most of the debugging parts(print statements) is on be sure to turn off for better performance
 '''
 from Individual import Individual
 import random
@@ -146,10 +148,7 @@ if __name__ == "__main__":
         result_bestIngen.append(best_ingen.fitness)
         result_objective.append((total_objective/POPULATION_SIZE))
         result_fitness.append((total_fitness/POPULATION_SIZE))
-        print(f"result fitness size : {len(result_fitness)}")
-        print(f"result objective size : {len(result_objective)}")
         
-        print(generation)
         if solution_found or generation > GENERATION_THRESHOLD:
             end = time.time()
             break

@@ -1,3 +1,8 @@
+'''
+This file contains crossover operation used in GA loop
+I got the reference from https://github.com/DEAP/deap/blob/master/deap/tools/crossover.py
+and code my own based on that reference for my own understanding
+'''
 import random
 from Individual import Individual
 import copy

@@ -1,3 +1,6 @@
+'''
+This file contains mutation operation for job assignment GA loop
+'''
 from Individual import Individual
 import random
 import copy
