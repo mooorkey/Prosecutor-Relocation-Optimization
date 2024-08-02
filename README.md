@@ -38,7 +38,7 @@ cost_matrix4 = [
 1. One Job per Worker: Each worker can be assigned to only one job.
 2. One Worker per Job: Each job must be assigned to exactly one worker.
 #### Objective: 
-Find the optimal assignment of workers to jobs that minimizes the total cost while satisfying constraints above.
+Find the optimal assignment of workers to jobs that minimizes the total cost while satisfying the constraints above.
 
 
 ### Methods
@@ -48,7 +48,13 @@ Branch and Bound is a method for solving optimization problems by exploring feas
 - **Approach:** Explores all possible assignments but eliminates suboptimal solutions to reduce computation, resulting in reduced execution time.
 - **Limitation:** Due to its nature, it is most likely a semi-bruteforce approach. It can be inefficient for large-scale problems.
 - **Result:** Proved inefficient for large-scale problems with a high number of workers and jobs.
-- TODO: Add result pictures of exec time vs input size
+<p align='center'>
+  <img width="388" alt="image" src="https://github.com/user-attachments/assets/95634c7c-5902-4837-b436-95f7984e4acf">
+</p>
+<p align="center">
+	<em>Branch and Bound Execution Time vs Input Size</em>
+</p>
+
 
 
 #### Genetic Algorithm
@@ -60,11 +66,11 @@ The genetic algorithm is an evolutionary optimization technique inspired by natu
 	<em>Genetic Algorithm Procedure</em>
 </p>
 
-- **Approach:** The picture above shows the main cycle of Genetic Algorithm inlcuding 
+- **Approach:** The picture above shows the main cycle of the Genetic Algorithm including 
   - Initial Population: The algorithm begins with a randomly generated set of assignments.
-  - Selection: Each assignment is evaluated based on its fitness, and the best-performing assignments are selected. In this case, **Roulette Wheel Selection** is used, where individuals are selected probabilistically based on thier fitness.
-  - Crossover: Selected assignments are combined to produce new candidates. **PMX (Partially Mapped Crossover)** is used, where two crossover points are chosen, and segments between these points are exchanged between parent solutions while preserving relative ordering and position of genes.
-  - Mutation: Random changes are applied to some assignment to introduce diversity and expand the solution space. **Swap Mutation** is used to prevent gene duplication within chromosome, which could violate the constraint. In Swap Mutation, two genes are randomly selected and swapped to maintain valid assignments.
-  - Iteration: This process of selection, crossover, and mutation is repeated over multiple generations until a terminate condition is met, such as a maximum number of generations or achieving a satisfactory solution.
+  - Selection: Each assignment is evaluated based on its fitness, and the best-performing assignments are selected. In this case, **Roulette Wheel Selection** is used, where individuals are selected probabilistically based on their fitness.
+  - Crossover: Selected assignments are combined to produce new candidates. **PMX (Partially Mapped Crossover)** is used, where two crossover points are chosen, and segments between these points are exchanged between parent solutions while preserving the relative ordering and position of genes.
+  - Mutation: Random changes are applied to some assignments to introduce diversity and expand the solution space. **Swap Mutation** is used to prevent gene duplication within chromosomes, which could violate the constraint. In Swap Mutation, two genes are randomly selected and swapped to maintain valid assignments.
+  - Iteration: This process of selection, crossover, and mutation is repeated over multiple generations until a termination condition is met, such as a maximum number of generations or achieving a satisfactory solution.
 - **Result:** The Genetic Algorithm is effective for exploring a large solution space and can efficiently find good solutions. 
 -  TODO: Add result pictures of exec time vs input size
