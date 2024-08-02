@@ -12,6 +12,9 @@ The cost matrix is a key compenent in this problem. It determines the cost assoc
 <p align="center">
   <img width="302" alt="image" src="https://github.com/user-attachments/assets/a84d9ba4-fc00-40a1-bfc7-08ae1f0a2740">
 </p>
+<p align="center">
+	<em>Cost Matrix</em>
+</p>
 
 In the above matrix:
 - Rows represent workers
@@ -42,11 +45,10 @@ Find the optimal assignment of workers to jobs that minimizes the total cost whi
 #### Branch and Bound
 Branch and Bound is a method for solving optimization problems by exploring feasible solutions. it divides the problem into smaller subproblems and uses to bounding techniques to cut the branches that cannot provide an optimal solution.
 ![image](https://github.com/user-attachments/assets/1d7454f7-b55b-4519-92b9-5d9d37fcd24b)
-- **Approach:** The method explores all possible assignments but eliminates suboptimal solutions to reduce computation, resulting in reduced execution time.
-- **Limitation:** Due to its nature, it is most likely a semi-bruteforce approach. It proved inefficient for large-scale problems with a high number of workers and jobs.
-
-Result
-TODO: Add result
+- **Approach:** Explores all possible assignments but eliminates suboptimal solutions to reduce computation, resulting in reduced execution time.
+- **Limitation:** Due to its nature, it is most likely a semi-bruteforce approach. It can be inefficient for large-scale problems.
+- **Result:** Proved inefficient for large-scale problems with a high number of workers and jobs.
+- TODO: Add result pictures of exec time vs input size
 
 
 #### Genetic Algorithm
@@ -54,11 +56,15 @@ The genetic algorithm is an evolutionary optimization technique inspired by natu
 <p align='center'>
   <img width="388" alt="image" src="https://github.com/user-attachments/assets/b2ed2744-a450-40f8-b5e8-60b57db575c4">
 </p>
+<p align="center">
+	<em>Genetic Algorithm Procedure</em>
+</p>
 
-- **Approach:**
-  - Initial Population: Generate a random set of assignments.
-  - Selection: Evaluate each assignment based on its total cost and select the best ones. In this case we are using **Roulette wheel selection.**
-  - Crossover: Combine selected assignments to create new candidates. In this case we are using **1 Point Crossver method.**
-  - Mutation: Mutate selected assignments to create new candidates. In this case we are using **Random Mutation.**
-
-- **Result:**
+- **Approach:** The picture above shows the main cycle of Genetic Algorithm inlcuding 
+  - Initial Population: The algorithm begins with a randomly generated set of assignments.
+  - Selection: Each assignment is evaluated based on its fitness, and the best-performing assignments are selected. In this case, **Roulette Wheel Selection** is used, where individuals are selected probabilistically based on thier fitness.
+  - Crossover: Selected assignments are combined to produce new candidates. **PMX (Partially Mapped Crossover)** is used, where two crossover points are chosen, and segments between these points are exchanged between parent solutions while preserving relative ordering and position of genes.
+  - Mutation: Random changes are applied to some assignment to introduce diversity and expand the solution space. **Swap Mutation** is used to prevent gene duplication within chromosome, which could violate the constraint. In Swap Mutation, two genes are randomly selected and swapped to maintain valid assignments.
+  - Iteration: This process of selection, crossover, and mutation is repeated over multiple generations until a terminate condition is met, such as a maximum number of generations or achieving a satisfactory solution.
+- **Result:** The Genetic Algorithm is effective for exploring a large solution space and can efficiently find good solutions. 
+-  TODO: Add result pictures of exec time vs input size
