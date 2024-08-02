@@ -50,4 +50,15 @@ TODO: Add result
 
 
 #### Genetic Algorithm
+The genetic algorithm is an evolutionary optimization technique inspired by natural selection. It evolves a population of candidate solutions over generations to find an optimal or in most case near-optimal solution.
+<p align='center'>
+  <img width="388" alt="image" src="https://github.com/user-attachments/assets/b2ed2744-a450-40f8-b5e8-60b57db575c4">
+</p>
 
+- **Approach:**
+  - Initial Population: Generate a random set of assignments.
+  - Selection: Evaluate each assignment based on its total cost and select the best ones. In this case we are using **Roulette wheel selection.**
+  - Crossover: Combine selected assignments to create new candidates. In this case we are using **1 Point Crossver method.**
+  - Mutation: Mutate selected assignments to create new candidates. In this case we are using **Random Mutation.**
+
+- **Result:**
