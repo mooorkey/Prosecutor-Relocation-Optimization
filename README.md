@@ -4,7 +4,7 @@ Basicly it is a job assignment problem but with additional constraints.
 To solve the problem, I choose 2 popular optimization algorithm including "Branch and Bound" and "Genetic Algorithm" to study, compare, and optimize.
 
 # Job assignment problem
-### Problem Defination
+### Problem Definition
 The job assignment problem involves assigning a set of tasks or jobs to a set of agents such that to total cost of assignments is minimized while satisfying certain constraints. 
 ### Cost Matrix
 The cost matrix is a key compenent in this problem. It determines the cost associated with assigning each worker to each job
@@ -44,15 +44,20 @@ Find the optimal assignment of workers to jobs that minimizes the total cost whi
 ### Methods
 #### Branch and Bound
 Branch and Bound is a method for solving optimization problems by exploring feasible solutions. it divides the problem into smaller subproblems and uses to bounding techniques to cut the branches that cannot provide an optimal solution.
-![image](https://github.com/user-attachments/assets/1d7454f7-b55b-4519-92b9-5d9d37fcd24b)
+<p align='center'>
+  <img width="500" alt="image" src="https://github.com/user-attachments/assets/1d7454f7-b55b-4519-92b9-5d9d37fcd24b">
+</p>
+<p align="center">
+	<em>Branch and Bound Procedure</em>
+</p>
 - **Approach:** Explores all possible assignments but eliminates suboptimal solutions to reduce computation, resulting in reduced execution time.
 - **Limitation:** Due to its nature, it is most likely a semi-bruteforce approach. It can be inefficient for large-scale problems.
-- **Result:** Proved inefficient for large-scale problems with a high number of workers and jobs.
+- **Result:** Proved inefficient for large-scale problems with a high number of workers and jobs because the execution time or time complexity grows exponentially with the size of the problem.
 <p align='center'>
   <img width="388" alt="image" src="https://github.com/user-attachments/assets/95634c7c-5902-4837-b436-95f7984e4acf">
 </p>
 <p align="center">
-	<em>Branch and Bound Execution Time vs Input Size</em>
+	<em>Branch and Bound Time Complexity</em>
 </p>
 
 
@@ -74,3 +79,6 @@ The genetic algorithm is an evolutionary optimization technique inspired by natu
   - Iteration: This process of selection, crossover, and mutation is repeated over multiple generations until a termination condition is met, such as a maximum number of generations or achieving a satisfactory solution.
 - **Result:** The Genetic Algorithm is effective for exploring a large solution space and can efficiently find good solutions. 
 -  TODO: Add result pictures of exec time vs input size
+# Prosecutor Relocation Problem(Contraint Job Assignment Problem)
+### Problem Definition
+
