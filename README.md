@@ -83,4 +83,40 @@ The genetic algorithm is an evolutionary optimization technique inspired by natu
 -  TODO: Add result pictures of exec time vs input size
 # Prosecutor Relocation Problem(Constraint Job Assignment Problem)
 ### Problem Definition
+```
+### The data
+worker_datas = [
+        # PriorityNo, Rank, Job
+        [1, 5, 1, [ # worker 1
+            # JobId, Score, JobRank
+            [2, 30, 5],
+            [3, 29, 5],
+            [4, 28, 5]
+        ], 0], # Relocation Type 1 -> Promotion, 0 -> Relocation
+        [2, 5, 1, [ # worker 2
+            [2, 30, 6],
+            [3, 29, 6],
+            [4, 28, 6]
+        ], 1],
+etc...
+```
+
+```
+job_datas = [
+#                   rank 1 ------------>6
+    [1, "Job1", "Pos1", [6, 5, 4, 1, 2, 1]],
+    [2, "Job2", "Pos2", [1, 2, 3, 69, 5, 6]],
+    [3, "Job3", "Pos3", [1, 0, 1, 1, 0, 1]],
+    [4, "Job4", "Pos4", [1, 1, 0, 1, 0, 0]],
+    [5, "Job5", "Pos5", [0, 1, 0, 1, 1, 0]],
+    [6, "Job6", "Pos6", [1, 1, 1, 0, 0, 1]],
+    [7, "Job7", "Pos7", [0, 0, 1, 1, 1, 0]],
+    [8, "Job8", "Pos8", [1, 1, 0, 0, 1, 1]],
+    [9, "Job9", "Pos9", [1, 1, 1, 1, 0, 0]],
+    [10, "Job10", "Pos10", [0, 1, 1, 0, 0, 1]],
+    [11, "Job11", "Pos11", [1, 0, 1, 0, 1, 1]],
+    [12, "Job12", "Pos12", [0, 0, 0, 0, 0, 0]],
+    [13, "Job13", "Pos13", [0, 0, 0, 0, 0, 0]]
+]
+```
 
