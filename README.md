@@ -102,17 +102,17 @@ worker_datas = [
         ], 1],
 etc...
 ```
-This above matrix is what the cost matrix of prosecutor relocation look like and structured as follows:
+The code above is what the cost matrix of prosecutor relocation problem look like and structured as follows:
 - Priority Number: Indicate which worker should be assigned to a job first(1 is highest).
 - Rank: The current rank of the worker(maximum rank of 6).
 - Job: The jobId of worker current job.
-- Job Preferences List:
+- Job Preferences List: Each worker can choose up to 30 different job to relocate.
   - JobId: jobId of preferred job.
-  - Score: Appraisal/Satisfaction score(maximum score of 30, non-redundant).
+  - Score: Appraisal/Satisfaction score(maximum score of 30).
   - JobRank: The required rank of preferred job(maximum rank of 6).
 - Relocation Type: 0 for Normal Relocation, 1 for Promotion. We have to assign job to worker who's promoting first(assign to worker relocType 1 before 0).
 ```
-job_datas = [
+job_datas = [ 
 #  jobId, Name, Pos, [rank 1 ------------>6]
     [1, "Job1", "Pos1", [6, 5, 4, 1, 2, 1]],
     [2, "Job2", "Pos2", [1, 2, 3, 69, 5, 6]],
@@ -129,4 +129,12 @@ job_datas = [
     [13, "Job13", "Pos13", [0, 0, 0, 0, 0, 0]]
 ]
 ```
+The job_data list is the matrix that indicate the capacities of each job and structured as follows:
+- jobId: Id of the job.
+- Name: The name of the job.
+- Pos: The position name of the job.
+- Capacity List: The number of capacity for each started from rank 1 up to rank 6. for example: ```[1, "Job1", "Pos1", [6, 5, 4, 1, 2, 1]]```, the job with jobId 1 has the name "Job1" and position name "Pos1"
+  - rank 1 of this job has capacity of 6 or 6 available.
+  - rank 2 of this job has capacity of 5 or 5 available.
+  - rank 6 of this job has capacity of 1 or 1 available.
 
