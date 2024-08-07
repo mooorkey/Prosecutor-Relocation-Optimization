@@ -81,6 +81,7 @@ The genetic algorithm is an evolutionary optimization technique inspired by natu
   - Iteration: This process of selection, crossover, and mutation is repeated over multiple generations until a termination condition is met, such as a maximum number of generations or achieving a satisfactory solution.
 - **Result:** The Genetic Algorithm is effective for exploring a large solution space and can efficiently find good solutions. 
 -  TODO: Add result pictures of exec time vs input size
+
 # Prosecutor Relocation Problem(Constraint Job Assignment Problem)
 ### Problem Definition
 The prosecutor relocation problem involves assigning jobs to workers(prosecutors) while maximizing the satisfaction/appraisal score and maintaining the satisfaction of capacity constraint. Each worker has their own list of job preferences. Each job has their own rank and each rank has thier capacity that must not be exceeded.
@@ -141,7 +142,7 @@ The job_data list is the matrix that indicate the capacities of each job and str
 #### Branch and Bound
 The implemented version of Branch and Bound algorithm for solving prosecutor relocation problem is as followed:
 <p align='center'>
-  	<img width="500" alt="image" src="https://github.com/user-attachments/assets/48722bac-1481-4308-ac34-2d092bf22cd2">
+	<img width="500" alt="image" src="https://github.com/user-attachments/assets/48722bac-1481-4308-ac34-2d092bf22cd2">
 </p>
 <p align="center">
 	<em>Implemented Branch and Bound for Prosecutor Relocation Problem</em>
@@ -149,8 +150,14 @@ The implemented version of Branch and Bound algorithm for solving prosecutor rel
 
 - **Approach:** In order to solve the prosecutor relocation problem, one of the constraints is the capacity, so we need to know exactly how much capacity we have left for each job. The process of "clearing slot" is doing by +1 capacity in job_data for each worker job before relocation. By doing "clearing slot" process we know the exact capacity number, now we have to assign worker to their preferred job by exploring their job preferences list, skipping any preferred job that violates the constraint and reducing the capacity of job in job_data once it is assigned.
 - **Limitation:** Similar to the normal one, with the larger data set, it may lead to longer processing time.
-- **Result:** Proved inefficient for large-scale problems.
+- **Result:** Proved inefficient for large-scale problems. Time complexity grows exponentially.
 - TODO, Add result picture 
 
 #### Genetic Algorithm
-
+The process that's being added to the loop is keeping elitism. This process preserved the best x% of population and directly propagate to next generation to maintain high quality solution.  
+<p align='center'>
+	<img width="388" alt="image" src="https://github.com/user-attachments/assets/a1b0111b-39d0-45df-ac7b-290edf781683">
+</p>
+<p align="center">
+	<em>Genetic Algorithm for Prosecutor Relocation Problem</em>
+</p>
