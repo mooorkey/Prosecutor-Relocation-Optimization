@@ -137,4 +137,20 @@ The job_data list is the matrix that indicate the capacities of each job and str
   - rank 1 of this job has capacity of 6 or 6 available.
   - rank 2 of this job has capacity of 5 or 5 available.
   - rank 6 of this job has capacity of 1 or 1 available.
+### Methods
+#### Branch and Bound
+The implemented version of Branch and Bound algorithm for solving prosecutor relocation problem is as followed:
+<p align='center'>
+  	<img width="500" alt="image" src="https://github.com/user-attachments/assets/48722bac-1481-4308-ac34-2d092bf22cd2">
+</p>
+<p align="center">
+	<em>Implemented Branch and Bound for Prosecutor Relocation Problem</em>
+</p>
+
+- **Approach:** In order to solve the prosecutor relocation problem, one of the constraints is the capacity, so we need to know exactly how much capacity we have left for each job. The process of "clearing slot" is doing by +1 capacity in job_data for each worker job before relocation. By doing "clearing slot" process we know the exact capacity number, now we have to assign worker to their preferred job by exploring their job preferences list, skipping any preferred job that violates the constraint and reducing the capacity of job in job_data once it is assigned.
+- **Limitation:** Similar to the normal one, with the larger data set, it may lead to longer processing time.
+- **Result:** Proved inefficient for large-scale problems.
+- TODO, Add result picture 
+
+#### Genetic Algorithm
 
