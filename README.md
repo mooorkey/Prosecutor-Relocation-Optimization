@@ -83,6 +83,8 @@ The genetic algorithm is an evolutionary optimization technique inspired by natu
 -  TODO: Add result pictures of exec time vs input size
 # Prosecutor Relocation Problem(Constraint Job Assignment Problem)
 ### Problem Definition
+The prosecutor relocation problem involves assigning jobs to workers(prosecutors) while maximizing the satisfaction/appraisal score and maintaining the satisfaction of capacity constraint. Each worker has their own list of job preferences. Each job has their own rank and each rank has thier capacity that must not be exceeded.
+### Prosecutor Relocation's Cost Matrix
 ```
 ### The data
 worker_datas = [
@@ -100,10 +102,18 @@ worker_datas = [
         ], 1],
 etc...
 ```
-
+This above matrix is what the cost matrix of prosecutor relocation look like and structured as follows:
+- Priority Number: Indicate which worker should be assigned to a job first(1 is highest).
+- Rank: The current rank of the worker(maximum rank of 6).
+- Job: The jobId of worker current job.
+- Job Preferences List:
+  - JobId: jobId of preferred job.
+  - Score: Appraisal/Satisfaction score(maximum score of 30, non-redundant).
+  - JobRank: The required rank of preferred job(maximum rank of 6).
+- Relocation Type: 0 for Normal Relocation, 1 for Promotion. We have to assign job to worker who's promoting first(assign to worker relocType 1 before 0).
 ```
 job_datas = [
-#                   rank 1 ------------>6
+#  jobId, Name, Pos, [rank 1 ------------>6]
     [1, "Job1", "Pos1", [6, 5, 4, 1, 2, 1]],
     [2, "Job2", "Pos2", [1, 2, 3, 69, 5, 6]],
     [3, "Job3", "Pos3", [1, 0, 1, 1, 0, 1]],
