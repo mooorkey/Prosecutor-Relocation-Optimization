@@ -166,7 +166,7 @@ The process that's being added to the loop is keeping elitism. This process pres
 #### Fitness Evaluation
 The fitness value can be calculated by using the objective divided by the maximum possible score that the assignment can be. For example, if we have 13 workers and each worker can choose up to 30 jobs/positions which means the maximum satisfaction score of each worker is 30, the maximum score for the assignment would be 13*30 which is 390 and if the assignment has an objective of 390 this means we have fitness value of 390/390 or 1.0 and that's the best possible case the assignment could be.
 ```
-def fitness_function(individual :Individual) -> int:
+def fitness_function(individual :Individual) -> tuple[int, float]:
     objective = 0
     for gene in individual.chromosome:
         objective += gene.score
@@ -179,7 +179,7 @@ def fitness_function(individual :Individual) -> int:
     return objective, fitness
 ```
 #### Result
-With a bigger population and a variety of assignments, if we do not keep and preserve the elite chromosome, the elite chromosome could be modified and get worse, so it is best to keep the elite.
+With a bigger population and a variety of assignments, if we do not keep and preserve the elite chromosome, the elite chromosome could be modified and get worse, so it is best to keep the elite one.
 <p align='center'>
 	<img width="600" alt="image" src="https://github.com/user-attachments/assets/fdecbac2-2b6c-4dc7-8870-4a38811d3521">
 </p>
