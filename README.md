@@ -209,7 +209,7 @@ This is the runtime of the first accomplished genetic algorithm. With the total 
 	<em>Runtime Analysis</em>
 </p>
 
-This is the result from profiling tool(cProfile) to analyze the execution time. As you can see most of the execution time lies the "deepcopy" function from "copy" module. So what does the deepcopy do? Basically, in order the perform each operation of genetic algorithm like crossover or mutation. Most of the time we create a copy of the object, So as this project is written in python and we are using list. There is a thing called mutable object when you create a copy of object like ```a=b``` it did not create a copy of object but instead it is referring. For more example
+This is the result from profiling tool(cProfile) to analyze the execution time. As you can see most of the execution time lies the "deepcopy" function from "copy" module. So what does the deepcopy do? Basically, in order the perform each operation of genetic algorithm like crossover or mutation. Most of the time we create a copy of the object, So as this project is written in python and we are using list. There is a thing called mutable object when you create a copy of object like ```a=b``` it did not create a copy of object but instead it is referring. For more example:
 ```
 a = [1 ,2 ,3, 4, 5, 6]
 b = a
@@ -219,7 +219,7 @@ print(a, b)
 ```
 Output: [-1, 2, 3, 4, 5, 6] [-1, 2, 3, 4, 5, 6]
 ```
-As you can see when we create our b list we are referring it to object a, when we editing our b list it modified our reference too and we don't want that to happen. So this is when the deepcopy come in handy
+As you can see when we create our b list we are referring it to object a, when we editing our b list it modified our reference too and we don't want that to happen. So this is when the deepcopy come in handy.
 ```
 import copy
 a = [1 ,2 ,3, 4, 5, 6]
@@ -230,7 +230,7 @@ print(a, b)
 ```
 Output: [1, 2, 3, 4, 5, 6] [-1, 2, 3, 4, 5, 6]
 ```
-I've create a little function to look inside their addresses
+I've created a little function to look inside their addresses.
 ```
 def addr(item: any):
     return hex(id(item))    
