@@ -155,9 +155,58 @@ The implemented version of Branch and Bound algorithm for solving prosecutor rel
 
 #### Genetic Algorithm
 The process that's being added to the loop is keeping elitism. This process preserved the best x% of population and directly propagate to next generation to maintain high quality solution.  
+[References](https://www.baeldung.com/cs/elitism-in-evolutionary-algorithms)
 <p align='center'>
 	<img width="388" alt="image" src="https://github.com/user-attachments/assets/a1b0111b-39d0-45df-ac7b-290edf781683">
 </p>
 <p align="center">
 	<em>Genetic Algorithm for Prosecutor Relocation Problem</em>
 </p>
+
+#### Fitness Evaluation
+The fitness value can be calculated by using the objective divided by the maximum possible score that the assignment can be. For example, if we have 13 workers and each worker can choose up to 30 jobs/positions which means the maximum satisfaction score of each worker is 30, the maximum score for the assignment would be 13*30 which is 390 and if the assignment has an objective of 390 this means we have fitness value of 390/390 or 1.0 and that's the best possible case the assignment could be.
+```
+def fitness_function(individual :Individual) -> int:
+    objective = 0
+    for gene in individual.chromosome:
+        objective += gene.score
+    # fitness = 1 - (1/objective) 
+    global MAX_SCORE
+    fitness = (objective) / MAX_SCORE
+    individual.objective = objective
+    individual.fitness = fitness
+
+    return objective, fitness
+```
+#### Result
+With a bigger population and a variety of assignments, if we do not keep and preserve the elite chromosome, the elite chromosome could be modified and get worse, so it is best to keep the elite.
+<p align='center'>
+	<img width="600" alt="image" src="https://github.com/user-attachments/assets/fdecbac2-2b6c-4dc7-8870-4a38811d3521">
+</p>
+<p align="center">
+	<em>Not Keeping Elitsm</em>
+</p>
+
+<p align='center'>
+	<img width="600" alt="image" src="https://github.com/user-attachments/assets/e9ea1125-1930-42b5-8840-d620974aa9d0">	
+</p>
+<p align="center">
+	<em>Keeping Elitsm</em>
+</p>
+
+# Runtime Optimization
+<p align='center'>
+	<img width="1040" alt="image" src="https://github.com/user-attachments/assets/dddc787e-b851-4c27-a681-229233a9ee3f">
+</p>
+<p align="center">
+	<em>Genetic Algorithm Runtime</em>
+</p>
+This is the runtime of the first accomplished genetic algorithm. With the total of 100 workers, 50 jobs and 30 preferences size 
+<p align='center'>
+	<img width="1343" alt="image" src="https://github.com/user-attachments/assets/45c6139e-ea6c-4d6d-9782-520944584a31">
+</p>
+<p align="center">
+	<em>Runtime Analysis</em>
+</p>
+This is the result from profiling tool(cProfile) to analyze the execution time. As you can see most of the execution time lies the "deepcopy" function from "copy" module. So what does the deepcopy do? Basically, in order the perform each operation of genetic algorithm like crossover or mutation. Most of the time we create a copy of the object, So as this project is written in python and we are using list. There is a thing called mutable object when you create a copy of object like 
+
