@@ -208,5 +208,130 @@ This is the runtime of the first accomplished genetic algorithm. With the total 
 <p align="center">
 	<em>Runtime Analysis</em>
 </p>
-This is the result from profiling tool(cProfile) to analyze the execution time. As you can see most of the execution time lies the "deepcopy" function from "copy" module. So what does the deepcopy do? Basically, in order the perform each operation of genetic algorithm like crossover or mutation. Most of the time we create a copy of the object, So as this project is written in python and we are using list. There is a thing called mutable object when you create a copy of object like 
+
+This is the result from profiling tool(cProfile) to analyze the execution time. As you can see most of the execution time lies the "deepcopy" function from "copy" module. So what does the deepcopy do? Basically, in order the perform each operation of genetic algorithm like crossover or mutation. Most of the time we create a copy of the object, So as this project is written in python and we are using list. There is a thing called mutable object when you create a copy of object like ```a=b``` it did not create a copy of object but instead it is referring. For more example
+```
+a = [1 ,2 ,3, 4, 5, 6]
+b = a
+b[0] = -1
+print(a, b)
+```
+```
+Output: [-1, 2, 3, 4, 5, 6] [-1, 2, 3, 4, 5, 6]
+```
+As you can see when we create our b list we are referring it to object a, when we editing our b list it modified our reference too and we don't want that to happen. So this is when the deepcopy come in handy
+```
+import copy
+a = [1 ,2 ,3, 4, 5, 6]
+b = copy.deepcopy(a)
+b[0] = -1
+print(a, b)
+```
+```
+Output: [1, 2, 3, 4, 5, 6] [-1, 2, 3, 4, 5, 6]
+```
+I've create a little function to look inside their addresses
+```
+def addr(item: any):
+    return hex(id(item))    
+def plist(list: list) -> None:
+    print(f'list : {addr(list)}')
+    for index, element in enumerate(list):
+        print(f'\telement {index}: {element}->{addr(element)}')
+    print()
+```
+if we take a look at the addresses of object a, b(not using deepcopy) and b(using deepcopy)
+```
+a = [1 ,2 ,3, 4, 5, 6]
+b = a
+b[0] = -1
+print(a, b)
+plist(a)
+plist(b)
+```
+```
+Output:
+[-1, 2, 3, 4, 5, 6] [-1, 2, 3, 4, 5, 6]
+list : 0x1108b11c0
+	element 0: -1->0x10a2c8d68
+	element 1: 2->0x10a2c8dc8
+	element 2: 3->0x10a2c8de8
+	element 3: 4->0x10a2c8e08
+	element 4: 5->0x10a2c8e28
+	element 5: 6->0x10a2c8e48
+
+list : 0x1108b11c0
+	element 0: -1->0x10a2c8d68
+	element 1: 2->0x10a2c8dc8
+	element 2: 3->0x10a2c8de8
+	element 3: 4->0x10a2c8e08
+	element 4: 5->0x10a2c8e28
+	element 5: 6->0x10a2c8e48
+```
+As you can see they are the same object. But if we use deepcopy.
+```
+import copy
+a = [1 ,2 ,3, 4, 5, 6]
+b = copy.deepcopy(a)
+b[0] = -1
+b[1] = 99
+print(a, b)
+plist(a)
+plist(b)
+```
+```
+Output:
+[1, 2, 3, 4, 5, 6] [-1, 99, 3, 4, 5, 6]
+list : 0x11089c8c0
+	element 0: 1->0x10a2c8da8
+	element 1: 2->0x10a2c8dc8
+	element 2: 3->0x10a2c8de8
+	element 3: 4->0x10a2c8e08
+	element 4: 5->0x10a2c8e28
+	element 5: 6->0x10a2c8e48
+
+list : 0x110896540
+	element 0: -1->0x10a2c8d68
+	element 1: 99->0x10a2c99e8
+	element 2: 3->0x10a2c8de8
+	element 3: 4->0x10a2c8e08
+	element 4: 5->0x10a2c8e28
+	element 5: 6->0x10a2c8e48
+```
+The deepcopy method create new list object and put the element inside it, So when we edit the element the original one is not affected. Now we know how to prevent mutable object. With a little more of research I found other way to create a new object instead of using the deepcopy, we are using list comprehension.
+```
+c = [i for i in a]
+c[0] = -1
+plist(a)
+plist(c)
+```
+```
+list : 0x11089c8c0
+	element 0: 1->0x10a2c8da8
+	element 1: 2->0x10a2c8dc8
+	element 2: 3->0x10a2c8de8
+	element 3: 4->0x10a2c8e08
+	element 4: 5->0x10a2c8e28
+	element 5: 6->0x10a2c8e48
+
+list : 0x11089ee40
+	element 0: -1->0x10a2c8d68
+	element 1: 2->0x10a2c8dc8
+	element 2: 3->0x10a2c8de8
+	element 3: 4->0x10a2c8e08
+	element 4: 5->0x10a2c8e28
+	element 5: 6->0x10a2c8e48
+```
+As you can see this approach has the same result as the deepcopy, So let's make a use of it.
+<p align='center'>
+	<img width="1033" alt="image" src="https://github.com/user-attachments/assets/b6804d95-4e8d-403d-83b0-17b14701e79a">
+</p>
+<p align="center">
+	<em>Optimized Runtime</em>
+</p>
+
+The execution time at 100 worker has been reduced from ~900 seconds to ~2.5 seconds that's a **~360x** times faster!
+
+TODO: Add a factorial experiment section
+
 
