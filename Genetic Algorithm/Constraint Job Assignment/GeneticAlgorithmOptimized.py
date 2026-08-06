@@ -21,7 +21,7 @@ from DataFile import worker_datas, job_datas, worker_datas2, worker_datas3, job_
 def pair_elements(list) -> list:
         return [[list[i], list[i + 1]] if i + 1 < len(list) else [list[i]] for i in range(0, len(list), 2)]
 
-def fitness_function(individual :Individual) -> int:
+def fitness_function(individual :Individual) -> tuple[int, float]:
     objective = 0
     for gene in individual.chromosome:
         objective += gene.score

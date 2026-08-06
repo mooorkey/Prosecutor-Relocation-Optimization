@@ -80,7 +80,7 @@ def mutation(parents :list[individual], mutationRate :float) -> list[individual]
         random_index = random.randint(0, total_gene-1)
         row = random_index // 4 # get chromosome index
         col = random_index % 4 # get gene index
-        random_gene = random.randint(-41, 41)
+        random_gene = random.randint(GENE_LOWER_BOUND, GENE_UPPER_BOUND)
         print(f"\nmutated index : {random_index} ({row},{col}), random gene : {random_gene}")
         old_chromosome = copy.deepcopy(parents[row].chromosome)
         print(f"from parent {old_chromosome}", end=" ")
@@ -102,7 +102,8 @@ if __name__ == "__main__":
 
     POPULATION_SIZE = 4
     CHROMOSOME_SIZE = 4
-    CHROMOSOME_RANGE = 41
+    GENE_LOWER_BOUND = -41
+    GENE_UPPER_BOUND = 41
 
     CROSSOVER_RATE = 0.25
     MUTATION_RATE = 0.2
@@ -111,9 +112,9 @@ if __name__ == "__main__":
     solution_found = False
     error_found = False
     error = 0
-    # Random Initail Population
+    # Random Initial Population
     for _ in range(POPULATION_SIZE):
-        individual_object = individual([random.randint(0, CHROMOSOME_RANGE) for _ in range(CHROMOSOME_SIZE)])
+        individual_object = individual([random.randint(GENE_LOWER_BOUND, GENE_UPPER_BOUND) for _ in range(CHROMOSOME_SIZE)])
         population.append(individual_object)
     generation = 0
 
